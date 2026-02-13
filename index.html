@@ -1,399 +1,2450 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SAWADOGO Mahmoud Abass – Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO -->
+    <title>SAWADOGO Mahmoud Abass - Ingénieur Télécommunications & Systèmes Embarqués</title>
+    <meta name="description" content="Portfolio professionnel de Mahmoud Abass SAWADOGO, élève ingénieur spécialisé en télécommunications, systèmes embarqués et automatisme industriel.">
+    <meta name="keywords" content="ingénieur, télécommunications, systèmes embarqués, IoT, automatisme, STM32, fibre optique">
+    <meta name="author" content="SAWADOGO Mahmoud Abass">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="SAWADOGO Mahmoud Abass - Portfolio Ingénieur">
+    <meta property="og:description" content="Découvrez mon parcours et mes projets en ingénierie">
+    <meta property="og:image" content="assets/photoDeProfilCv.jpg">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/mas_favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a2b5b5d8a5.js" crossorigin="anonymous"></script>
+    
+    <style>
+        /* ==========================================
+           VARIABLES & RESET
+        ========================================== */
+        :root {
+            /* Palette professionnelle moderne */
+            --primary-blue: #2563eb;
+            --dark-blue: #1e40af;
+            --light-blue: #3b82f6;
+            --accent-teal: #14b8a6;
+            --accent-purple: #8b5cf6;
+            
+            /* Neutrals */
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            --text-dark: #111827;
+            --text-medium: #6b7280;
+            --text-light: #9ca3af;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* ==========================================
+           LOADER
+        ========================================== */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--gray-200);
+            border-top-color: var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ==========================================
+           NAVBAR
+        ========================================== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+        }
+        
+        .logo-text {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-blue);
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+        
+        /* ==========================================
+           HERO SECTION
+        ========================================== */
+        .header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffffff 0%, var(--gray-50) 100%);
+        }
+        
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--primary-blue) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--accent-teal) 0%, transparent 50%);
+        }
+        
+        .header-content {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-blue);
+            box-shadow: var(--shadow-2xl);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.3);
+        }
+        
+        .header-content h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .header-content > p:first-of-type {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .header-content > p:last-of-type {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-primary:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .btn-alt {
+            background: white;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+        
+        .btn-alt:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* ==========================================
+           SECTIONS GÉNÉRIQUES
+        ========================================== */
+        .section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+        
+        .section.alt {
+            background: white;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-dark);
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-teal));
+            border-radius: 2px;
+        }
+        
+        /* ==========================================
+           PROFIL
+        ========================================== */
+        #profil p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-medium);
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+        
+        /* ==========================================
+           FORMATIONS
+        ========================================== */
+        .formations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .formation-card {
+            position: relative;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .formation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            transition: var(--transition);
+        }
+        
+        .formation-card:nth-child(1)::before {
+            background-image: linear-gradient(rgba(37, 99, 235, 0.85), rgba(30, 64, 175, 0.95)), url('assets/fstf.jpeg');
+        }
+        
+        .formation-card:nth-child(2)::before {
+            background-image: linear-gradient(rgba(20, 184, 166, 0.85), rgba(13, 148, 136, 0.95)), url('assets/fstt.png');
+        }
+        
+        .formation-card:nth-child(3)::before {
+            background-image: linear-gradient(rgba(139, 92, 246, 0.85), rgba(109, 40, 217, 0.95)), url('assets/ltnasl.jpeg');
+        }
+        
+        .formation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        .formation-card:hover::before {
+            transform: scale(1.1);
+        }
+        
+        .formation-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
+        }
+        
+        .formation-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .formation-card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .formation-card p {
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .formation-card em {
+            color: white;
+            font-style: normal;
+            font-weight: 700;
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* ==========================================
+           FILTRES
+        ========================================== */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            color: var(--text-dark);
+            border: 2px solid var(--gray-200);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .filter-btn:hover {
+            background: var(--gray-50);
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+        
+        .filter-btn.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+        
+        /* ==========================================
+           EXPÉRIENCES
+        ========================================== */
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .exp-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            background: white;
+            height: 100%;
+        }
+        
+        .exp-card.hidden {
+            display: none;
+        }
+        
+        .exp-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .exp-card-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .exp-card-header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid var(--dark-blue);
+        }
+        
+        .exp-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: white;
+            padding: 10px;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .exp-card-body {
+            padding: 2.5rem 2rem 2rem;
+        }
+        
+        .exp-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-blue);
+            line-height: 1.4;
+        }
+        
+        .exp-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .exp-card li {
+            color: var(--text-medium);
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .exp-card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* ==========================================
+           COMPÉTENCES
+        ========================================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-blue);
+            transform: scaleY(0);
+            transition: var(--transition);
+        }
+        
+        .skill-card:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .skill-card:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            min-width: 50px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .skill-card:hover .skill-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .skill-text {
+            flex: 1;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        /* ==========================================
+           PROJETS
+        ========================================== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            background: white;
+        }
+        
+        .project.hidden {
+            display: none;
+        }
+        
+        .project:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .project img,
+        .project video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .project-overlay {
+            padding: 1.5rem;
+        }
+        
+        .project-overlay h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .project-overlay p {
+            color: var(--text-medium);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .btn-small {
+            padding: 0.5rem 1rem;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .btn-small:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+        
+        /* ==========================================
+           OUTILS
+        ========================================== */
+        .tools-category {
+            margin-bottom: 60px;
+        }
 
-  <!-- ===== Liens ===== -->
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
-  <link rel="icon" type="image/x-icon" href="assets/mas_favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/a2b5b5d8a5.js" crossorigin="anonymous"></script>
+        .tools-category h3 {
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
+            border-left: 4px solid var(--primary-blue);
+            padding-left: 15px;
+            font-weight: 600;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 25px;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .tool-card img {
+            height: 70px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .tool-card p {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ==========================================
+           CERTIFICATIONS - OPTIMISÉE
+        ========================================== */
+        #certifications {
+            background: var(--bg-light);
+        }
+
+        .cert-category {
+            margin-bottom: 70px;
+        }
+
+        .cert-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
+            border-left: 5px solid var(--primary-blue);
+            padding-left: 15px;
+            font-weight: 600;
+        }
+
+        /* GRID - 3 COLONNES */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* CARD */
+        .cert-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            text-align: center;
+            padding: 0;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* IMAGE CONTAINER */
+        .cert-image-container {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: var(--gray-100);
+        }
+
+        .cert-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cert-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* OVERLAY ICON */
+        .cert-image-container::after {
+            content: '🔍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            opacity: 0;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .cert-card:hover .cert-image-container::after {
+            opacity: 0.8;
+        }
+
+        /* INFO SECTION */
+        .cert-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* TITLE */
+        .cert-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.4;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* VERIFY BUTTON */
+        .cert-card a {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .cert-card a:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================
+           MODAL IMAGE
+        ========================================== */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: var(--shadow-2xl);
+            animation: zoomIn 0.3s ease;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+
+        .image-modal-close:hover {
+            transform: scale(1.2) rotate(90deg);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes zoomIn {
+            from {transform: scale(0.7);}
+            to {transform: scale(1);}
+        }
+        
+        /* ==========================================
+           RÉCOMPENSES
+        ========================================== */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .award-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-teal);
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+        
+        .award-card:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* ==========================================
+           ASSOCIATIF
+        ========================================== */
+        .assoc-grid {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .assoc-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-blue);
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            color: var(--text-dark);
+        }
+        
+        .assoc-card:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* ==========================================
+           LANGUES & HOBBIES
+        ========================================== */
+        .lang-hobby-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .lang-card,
+        .hobby-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .lang-card h3,
+        .hobby-card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .lang-card ul,
+        .hobby-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .lang-card li,
+        .hobby-card li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--gray-200);
+            color: var(--text-dark);
+        }
+        
+        .lang-card li:last-child,
+        .hobby-card li:last-child {
+            border-bottom: none;
+        }
+        
+        /* ==========================================
+           CONTACT
+        ========================================== */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem;
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .contact-form button {
+            align-self: flex-start;
+        }
+        
+        .form-message {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .form-message.success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 2px solid rgb(34, 197, 94);
+            color: rgb(21, 128, 61);
+            display: block;
+        }
+        
+        .form-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid rgb(239, 68, 68);
+            color: rgb(185, 28, 28);
+            display: block;
+        }
+        
+        /* ==========================================
+           FOOTER
+        ========================================== */
+        footer {
+            background: var(--gray-900);
+            padding: 2rem;
+            text-align: center;
+            color: var(--gray-300);
+        }
+        
+        /* ==========================================
+           ANIMATIONS
+        ========================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in,
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible,
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ==========================================
+           MODAL PROJETS
+        ========================================== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: fadeInUp 0.4s ease-out;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: var(--transition);
+            background: none;
+            border: none;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary-blue);
+            transform: rotate(90deg);
+        }
+        
+        .modal-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+        
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+        
+        .modal-section h4 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--accent-teal);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .modal-section p,
+        .modal-section ul {
+            color: var(--text-medium);
+            line-height: 1.8;
+        }
+        
+        .modal-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .modal-section li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-section li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+        }
+        
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .modal-tags .tag {
+            padding: 0.5rem 1rem;
+            background: var(--gray-100);
+            color: var(--primary-blue);
+            border-radius: 20px;
+            border: 1px solid var(--gray-200);
+            font-size: 0.9rem;
+        }
+        
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+        @media (max-width: 968px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: var(--shadow-lg);
+                padding: 2rem 0;
+                gap: 1rem;
+                backdrop-filter: blur(12px);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-toggle {
+                display: flex;
+            }
+            
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .exp-grid,
+            .projects-grid,
+            .formations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .formation-card {
+                height: 300px;
+            }
+            
+            .skill-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .skill-icon {
+                font-size: 2rem;
+            }
+
+            .image-modal-close {
+                top: 10px;
+                right: 20px;
+                font-size: 30px;
+            }
+        }
+        
+        /* ==========================================
+           SCROLLBAR
+        ========================================== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-blue);
+        }
+    </style>
 </head>
 
 <body>
-
-  <!-- ===== NAVBAR ===== -->
-  <nav class="navbar" id="navbar">
-    <div class="logo"><span class="logo-icon"></span> <span class="logo-text">MAS.</span></div>
-    <ul class="nav-links">
-      <li><a href="#profil"><i class="fas fa-user"></i> Profil</a></li>
-      <li><a href="#formations"><i class="fas fa-graduation-cap"></i> Formations</a></li>
-      <li><a href="#experiences"><i class="fas fa-briefcase"></i> Expériences</a></li>
-      <li><a href="#competences"><i class="fas fa-cogs"></i> Compétences</a></li>
-      <li><a href="#projets"><i class="fas fa-project-diagram"></i> Projets</a></li>
-      <li><a href="#outils"><i class="fas fa-tools"></i> Outils</a></li>
-      <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- ===== HEADER ===== -->
-<header class="header">
-  <!-- Image de fond -->
-  <div class="parallax-bg" id="parallax-bg"></div>
-
-  <!-- Bande supérieure d'informations -->
-  <div class="header-top-info">
-    <p><i class="fas fa-envelope"></i> m.abass.saw@gmail.com</p>
-    <p><i class="fas fa-map-marker-alt"></i> Fès, Maroc</p>
-    <p><i class="fas fa-bullseye"></i> À la recherche d’un stage PFE <br> en Télécommunications</p>
-  </div>
-
-  <!-- Contenu principal du header -->
-  <div class="header-content fade-in">
-    <img src="assets/photoDeProfilCv.jpg" alt="Photo de profil" class="profile-img" />
-    <h1 id="typing-text"></h1>
-    <p>Élève ingénieur en Systèmes Intelligents, Communicants et Mobiles <br>  À la recherche d’un stage PFE en Télécommunications pour la periode de Janvier 2026 à Juin 2026</p>
-
-    <div class="header-buttons">
-      <a href="assets/CV Mahmoud Abass SAWADOGO.pdf" class="btn">📄 Télécharger CV</a>
-      <a href="#contact" class="btn btn-alt">✉️ Contactez-moi</a>
-      <a href="https://www.linkedin.com/in/mahmoud-abass-sawadogo-2474722a0" class="btn btn-alt">🔗 LinkedIn</a>
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="loader-spinner"></div>
     </div>
-  </div>
-</header>
 
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon"></span>
+                <span class="logo-text">ABASS</span>
+            </div>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#profil" class="nav-link"><i class="fas fa-user"></i> Profil</a></li>
+                <li><a href="#formations" class="nav-link"><i class="fas fa-graduation-cap"></i> Formations</a></li>
+                <li><a href="#experiences" class="nav-link"><i class="fas fa-briefcase"></i> Expériences</a></li>
+                <li><a href="#competences" class="nav-link"><i class="fas fa-cogs"></i> Compétences</a></li>
+                <li><a href="#projets" class="nav-link"><i class="fas fa-project-diagram"></i> Projets</a></li>
+                <li><a href="#outils" class="nav-link"><i class="fas fa-tools"></i> Outils</a></li>
+                <li><a href="#certifications" class="nav-link"><i class="fas fa-certificate"></i> Certifications</a></li>
+                <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-  <!-- ===== PROFIL ===== -->
-  <section id="profil" class="section fade-up">
-    <h2>Profil</h2>
-    <p>
-      Étudiant en dernière année du cycle ingénieur en Systèmes Intelligents et Communicants,
-      je possède une solide formation en télécommunications, RF, réseaux optiques et systèmes de transmission.
-      Ayant réalisé un stage en FH & Fibre Optique, j’ai acquis une expérience pratique en configuration,
-      mesures et analyse de performance de liaisons de transport. À l’aise avec les outils de modélisation,
-      simulation et instrumentation, je recherche un stage PFE pour participer à la conception,
-      l’optimisation et le déploiement de solutions de télécommunications avancées.
-    </p>
-  </section>
+    <!-- HEADER -->
+    <header class="header" id="hero">
+        <div class="parallax-bg" id="parallax-bg"></div>
+        <div class="header-content">
+            <img src="assets/photoDeProfilCv.jpg" alt="Photo de profil" class="profile-img">
+            <h1 id="typing-text"></h1>
+            <p>Élève ingénieur en Systèmes Intelligents, Communicants et Mobiles</p>
+            <p>Spécialisé en Télécommunications, Systèmes Embarqués et Automatisme Industriel</p>
+            <div class="header-buttons">
+                <a href="assets/CV Mahmoud Abass SAWADOGO.pdf" class="btn btn-primary" download>
+                    📄 Télécharger CV
+                </a>
+                <a href="#contact" class="btn btn-alt">
+                    ✉️ Contactez-moi
+                </a>
+                   <a href="https://wa.me/212619942459" class="btn btn-alt">
+                        Par WhatsApp
+                </a>
+                <a href="#linkedin" class="btn btn-alt">
+                    💼 LinkedIn
+                </a>
+            </div>
+        </div>
+    </header>
 
-  <!-- ===== FORMATIONS ===== -->
-  <section id="formations" class="section alt fade-up">
-    <h2>Formations</h2>
-    <div class="formations-grid">
-      <div class="formation-card">
-        <img src="assets/fstf.jpeg" alt="FST Fes" />
-        <div>
-          <h3>2024 – Présent</h3>
-          <p>Faculté des Sciences et Techniques de Fès<br /><em>Cycle Ingénieur – Systèmes Intelligents, Communicants et Mobiles</em></p>
+    <!-- PROFIL -->
+    <section id="profil" class="section fade-up">
+        <div class="container">
+            <h2>Profil</h2>
+            <p>
+                Étudiant en dernière année du cycle ingénieur en Systèmes Intelligents et Communicants,
+                je possède une solide formation en télécommunications, RF, réseaux optiques et systèmes de transmission.
+                Ayant réalisé un stage en FH & Fibre Optique, j'ai acquis une expérience pratique en configuration,
+                mesures et analyse de performance de liaisons de transport. À l'aise avec les outils de modélisation,
+                simulation et instrumentation, je recherche un stage PFE pour participer à la conception,
+                l'optimisation et le déploiement de solutions de télécommunications avancées.
+            </p>
+        </div>
+    </section>
+
+    <!-- FORMATIONS -->
+    <section id="formations" class="section alt fade-up">
+        <div class="container">
+            <h2>Formations</h2>
+            <div class="formations-grid">
+                <div class="formation-card">
+                    <div class="formation-content">
+                        <div>
+                            <div class="formation-icon">🎓</div>
+                            <h3>2024 – Présent</h3>
+                            <p>Faculté des Sciences et Techniques de Fès</p>
+                        </div>
+                        <em>Cycle Ingénieur – Systèmes Intelligents et Communicants</em>
+                    </div>
+                </div>
+                <div class="formation-card">
+                    <div class="formation-content">
+                        <div>
+                            <div class="formation-icon">📚</div>
+                            <h3>2021 – 2024</h3>
+                            <p>FST Tanger</p>
+                        </div>
+                        <em>Licence en Génie Électrique et Systèmes Industriels</em>
+                    </div>
+                </div>
+                <div class="formation-card">
+                    <div class="formation-content">
+                        <div>
+                            <div class="formation-icon">📖</div>
+                            <h3>2018 – 2021</h3>
+                            <p>Lycée Technique National A. S. Lamizana</p>
+                        </div>
+                        <em>Série F2 – Électronique</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPÉRIENCES -->
+    <section id="experiences" class="section fade-up">
+        <div class="container">
+            <h2>Expériences Professionnelles</h2>
+            
+            <!-- Filtres -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Toutes</button>
+                <button class="filter-btn" data-filter="telecom">📡 Télécommunications</button>
+                <button class="filter-btn" data-filter="automatisme">⚙️ Automatisme</button>
+                <button class="filter-btn" data-filter="electronique">🔋 Électronique</button>
+                <button class="filter-btn" data-filter="informatique">💻 Informatique Industrielle</button>
+            </div>
+            
+            <div class="exp-grid">
+                <!-- Telecel Faso -->
+                <div class="exp-card" data-domains="telecom">
+                    <div class="exp-card-header">
+                        <img src="assets/Telecel.jpeg" alt="Telecel Faso">
+                    </div>
+                    <div class="exp-card-body">
+                        <h3>Août 2025 – Sept 2025 : Stage PFA – Telecel Faso</h3>
+                        <ul>
+                            <li>Compréhension générale des réseaux de télécommunication chez les opérateurs</li>
+                            <li>Étude des systèmes de transmission et sécurité FH/FO</li>
+                            <li>Configuration et test des modems radio et CTR Aviat Networks</li>
+                            <li>Mesures et analyse de performance des liaisons</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Renault Tanger -->
+                <div class="exp-card" data-domains="automatisme,electronique,informatique">
+                    <div class="exp-card-header">
+                        <img src="assets/Renault.jpeg" alt="Renault Tanger">
+                    </div>
+                    <div class="exp-card-body">
+                        <h3>Avril – Juin 2024 : Stage PFE – Renault Tanger</h3>
+                        <ul>
+                            <li>Protection des circuits contre microcoupures, dimensionnement et installation</li>
+                            <li>Conception de circuits de commutation entre alimentation principale et secours</li>
+                            <li>Installation de dispositifs de sécurité sur ligne de production</li>
+                            <li>Programmation automates pour gestion basculement</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- SONABEL -->
+                <div class="exp-card" data-domains="electronique,automatisme">
+                    <div class="exp-card-header">
+                        <img src="assets/Sonabel.png" alt="SONABEL">
+                    </div>
+                    <div class="exp-card-body">
+                        <h3>Juillet – Août 2023 : Stage d'initiation – SONABEL DCET</h3>
+                        <ul>
+                            <li>Intervention sur les systèmes de protections et contrôle-commande</li>
+                            <li>Mesures et exploitation des compteurs électriques industriels</li>
+                            <li>Suivi et maintenance des transformateurs de puissance</li>
+                            <li>Supervision systèmes SCADA</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPÉTENCES -->
+    <section id="competences" class="section alt fade-up">
+        <div class="container">
+            <h2>Compétences</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🔌</div>
+                    <div class="skill-text">Systèmes embarqués (STM32, ESP32, Arduino)</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📡</div>
+                    <div class="skill-text">Télécommunications RF / FH / FO</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <div class="skill-text">Simulation (MATLAB, Simulink, Atoll)</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <div class="skill-text">IA & IoT appliquée à l'industrie</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <div class="skill-text">Développement Web & Mobile (Spring Boot, React)</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <div class="skill-text">Automatisation industrielle</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">👁️</div>
+                    <div class="skill-text">Vision industrielle (OpenCV, Python)</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🌐</div>
+                    <div class="skill-text">Réseaux optiques PON/GPON</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⌨️</div>
+                    <div class="skill-text">Programmation C/C++, Python, Java</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔬</div>
+                    <div class="skill-text">FPGA et conception numérique (VHDL)</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <div class="skill-text">Électronique de puissance</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎛️</div>
+                    <div class="skill-text">Contrôle-commande industriel</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section id="projets" class="section fade-up">
+        <div class="container">
+            <h2>Projets Académiques & Personnels</h2>
+            
+            <!-- Filtres -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter-project="all">Tous</button>
+                <button class="filter-btn" data-filter-project="telecom">📡 Télécoms</button>
+                <button class="filter-btn" data-filter-project="iot">🤖 IoT & Embarqué</button>
+                <button class="filter-btn" data-filter-project="automatisme">⚙️ Automatisme</button>
+                <button class="filter-btn" data-filter-project="ia">🧠 IA & Vision</button>
+                <button class="filter-btn" data-filter-project="energie">🌱 Énergie</button>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Smart Solar System -->
+                <div class="project" data-domains-project="iot,energie">
+                    <video autoplay muted loop playsinline>
+                        <source src="" type="video/mp4">
+                    </video>
+                    <div class="project-overlay">
+                        <h3>Smart Solar System</h3>
+                        <p>Système intelligent d'optimisation d'installation solaire avec suivi et contrôle de performance en temps réel</p>
+                        <button class="btn-small" onclick="openProjectModal('solar')">En savoir plus</button>
+                    </div>
+                </div>
+                
+                <!-- AirSense Tech -->
+                <div class="project" data-domains-project="iot,ia,energie">
+                    <img src="assets/projets/imProjetAirSenseTech.jpg" alt="AirSense Tech">
+                    <div class="project-overlay">
+                        <h3>AirSense Tech System</h3>
+                        <p>Système de contrôle en temps réel de la qualité d'air dans une voiture, intégrant des capteurs et une interface connectée</p>
+                        <button class="btn-small" onclick="openProjectModal('airsense')">En savoir plus</button>
+                    </div>
+                </div>
+                
+                <!-- Chaîne de tri -->
+                 <div class="project" data-domains-project="iot,energie">
+                    <video autoplay muted loop playsinline>
+                        <source src="assets/projets/vid_chaine_de_tri.mp4" type="video/mp4">
+                    </video>
+                    <div class="project-overlay">
+                       <h3>Chaîne de Tri Automatisée</h3>
+                        <p>Projet d'automatisme industriel : tri de pièces selon leur qualité via un convoyeur, Raspberry Pi et caméra</p>
+                        <button class="btn-small" onclick="openProjectModal('tri')">En savoir plus</button>
+                    </div>
+                </div>
+                
+                <!-- Configuration CTR -->
+                <div class="project" data-domains-project="telecom">
+                    <img src="assets/imConfigCTR8312erODU.jpg" alt="Configuration CTR">
+                    <div class="project-overlay">
+                        <h3>Configuration CTR 8312 Aviat Network</h3>
+                        <p>Configuration de cet équipement pour assurer une bonne qualité de service dans la télécommunication FH et FO</p>
+                        <button class="btn-small" onclick="openProjectModal('ctr')">En savoir plus</button>
+                    </div>
+                </div>
+                
+                <!-- AGV Industriel -->
+                <div class="project" data-domains-project="iot,automatisme">
+                    <video autoplay muted loop playsinline>
+                        <source src="assets/projets/vid_RobotOrganisateur.mp4" type="video/mp4">
+                    </video>
+                      <div class="project-overlay">
+                        <h3>AGV Industriel (STM32)</h3>
+                        <p>Prototype d'AGV autonome à base de microcontrôleur STM32, capable de suivre des rails et transporter des charges</p>
+                        <button class="btn-small" onclick="openProjectModal('agv')">En savoir plus</button>
+                    </div>
+                </div>
+
+                
+                <!-- Réseau PON -->
+                <div class="project" data-domains-project="telecom">
+                    <img src="assets/TP/TP_FO0.png" alt="Réseau PON">
+                    <div class="project-overlay">
+                        <h3>Réseau Optique PON</h3>
+                        <p>Étude et modélisation d'un réseau optique PON avec calcul de budget optique, dispersion et couplage</p>
+                        <button class="btn-small" onclick="openProjectModal('pon')">En savoir plus</button>
+                    </div>
+                </div>
+                
+                <!-- Vision IA -->
+                <div class="project" data-domains-project="ia,iot">
+                    <img src="assets/projets/project8.jpg" alt="Vision IA">
+                    <div class="project-overlay">
+                        <h3>Système de Vision IA</h3>
+                        <p>Application de vision industrielle utilisant Python et OpenCV pour le contrôle qualité automatisé</p>
+                        <button class="btn-small" onclick="openProjectModal('vision')">En savoir plus</button>
+                    </div>
+                </div>
+                
+                <!-- PID Médical -->
+                <div class="project" data-domains-project="automatisme,iot">
+                    <img src="assets/projets/project9.jpg" alt="PID Médical">
+                    <div class="project-overlay">
+                        <h3>Commande PID pour Système Médical</h3>
+                        <p>Conception et simulation d'un régulateur PID pour le contrôle de pression d'un système médical simulé</p>
+                        <button class="btn-small" onclick="openProjectModal('pid')">En savoir plus</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUTILS -->
+    <section id="outils" class="section alt fade-up">
+      <div class="container">
+        <h2>Outils Techniques</h2>
+
+        <!-- EMBARQUE & ELECTRONIQUE -->
+        <div class="tools-category">
+          <h3>Embarqué & Électronique</h3>
+          <div class="tools-grid">
+            <div class="tool-card">
+              <img src="assets/logos/im_stm32.png" alt="STM32">
+              <p>STM32</p>
+            </div>
+            <div class="tool-card">
+              <img src="assets/logos/arduino.jpeg" alt="Arduino">
+              <p>Arduino</p>
+            </div>
+            <div class="tool-card">
+              <img src="assets/logos/esp32.jpg" alt="ESP32">
+              <p>ESP32</p>
+            </div>
+            <div class="tool-card">
+              <img src="assets/logos/fpga.png" alt="FPGA">
+              <p>FPGA</p>
+            </div>
+            <div class="tool-card">
+              <img src="assets/logos/im_quartus.jpeg" alt="Quartus">
+              <p>Quartus</p>
+            </div>
+            <div class="tool-card">
+              <img src="assets/logos/vhdl.jpeg" alt="VHDL">
+              <p>VHDL</p>
+            </div>
+            <div class="tool-card">
+              <img src="assets/logos/keil_uvision5.jpeg" alt="Keil">
+              <p>Keil uVision</p>
+            </div>
+            <div class="tool-card">
+              <img src="assets/logos/proteus.png" alt="Proteus">
+              <p>Proteus</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTOMATISME & IOT -->
+        <div class="tools-category">
+          <h3>Automatisme & IoT</h3>
+          <div class="tools-grid">
+            <div class="tool-card">
+              <img src="assets/logos/im_matlab_simulink.jpg" alt="Matlab Simulink">
+              <p>Matlab / Simulink</p>
+            </div>
+            <div class="tool-card">
+              <img src="assets/logos/modelsim.jpg" alt="ModelSim">
+              <p>ModelSim</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TELECOMMUNICATION & RESEAUX -->
+        <div class="tools-category">
+          <h3>Télécommunication & Réseaux</h3>
+          <div class="tools-grid">
+            <div class="tool-card">
+              <img src="assets/logos/im_atoll.png" alt="Atoll">
+              <p>Atoll</p>
+            </div>
+            <div class="tool-card">
+              <img src="assets/logos/im_optisystem.jpeg" alt="OptiSystem">
+              <p>OptiSystem</p>
+            </div>
+            <div class="tool-card">
+              <img src="assets/logos/cisco_packet_tracer.jpg" alt="Cisco Packet Tracer">
+              <p>Cisco Packet Tracer</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- INFORMATIQUE -->
+        <div class="tools-category">
+          <h3>Informatique</h3>
+          <div class="tools-grid">
+            <div class="tool-card">
+              <img src="assets/logos/im_python_java_c_cpp.jpg" alt="Langages">
+              <p>C / C++ / Java / Python</p>
+            </div>
+            <div class="tool-card">
+              <img src="assets/logos/im_html_css_js_php_sql.jpg" alt="Web">
+              <p>HTML / CSS / JS / PHP / SQL</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="formation-card">
-        <img src="assets/fstt.png" alt="FST Tanger" />
-        <div>
-          <h3>2021 – 2024</h3>
-          <p>FST Tanger<br /><em>Licence en Génie Électrique et Systèmes Industriels</em></p>
+    </section>
+
+    <!-- LICENCES & CERTIFICATIONS -->
+    <section id="certifications" class="section fade-up">
+      <div class="container">
+        <h2>Licences & Certifications</h2>
+
+        <!-- ELECTRONIQUE -->
+        <div class="cert-category">
+          <h3>Électronique & Systèmes Embarqués</h3>
+          <div class="cert-grid">
+            <div class="cert-card">
+              <div class="cert-image-container">
+                <img src="./assets/certifications/canEtCanFD.png" onclick="openImageModal(this.src)" alt="CAN & CAN FD Protocol">
+              </div>
+              <div class="cert-info">
+                <h4>CAN & CAN FD Protocol</h4>
+                <a href="#" target="_blank">Vérifier</a>
+              </div>
+            </div>
+
+            <div class="cert-card">
+              <div class="cert-image-container">
+                <img src="./assets/certifications/MPLAB_Harmony_v3_Fundamentals.png" onclick="openImageModal(this.src)" alt="MPLAB Harmony v3">
+              </div>
+              <div class="cert-info">
+                <h4>MPLAB Harmony v3 Fundamentals</h4>
+                <a href="#" target="_blank">Vérifier</a>
+              </div>
+            </div>
+
+            <div class="cert-card">
+              <div class="cert-image-container">
+                <img src="assets/certifications/MPU_System_and_PCB_Design_Pitfalls_and_Solutions.png" onclick="openImageModal(this.src)" alt="MPU System & PCB Design">
+              </div>
+              <div class="cert-info">
+                <h4>MPU System & PCB Design</h4>
+                <a href="#" target="_blank">Vérifier</a>
+              </div>
+            </div>
+
+            <div class="cert-card">
+              <div class="cert-image-container">
+                <img src="assets/certifications/pcb.png" onclick="openImageModal(this.src)" alt="High-Speed PCB Design">
+              </div>
+              <div class="cert-info">
+                <h4>High-Speed PCB Design</h4>
+                <a href="#" target="_blank">Vérifier</a>
+              </div>
+            </div>
+
+            <div class="cert-card">
+              <div class="cert-image-container">
+                <img src="assets/certifications/fpga1.png" onclick="openImageModal(this.src)" alt="Microchip PolarFire FPGA">
+              </div>
+              <div class="cert-info">
+                <h4>Microchip PolarFire® FPGA</h4>
+                <a href="#" target="_blank">Vérifier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TELECOM -->
+        <div class="cert-category">
+          <h3>Réseaux & Télécommunications</h3>
+          <div class="cert-grid">
+            <div class="cert-card">
+              <div class="cert-image-container">
+                <img src="assets/certifications/IPAddressingRoutingAndNetworkManagement.png" onclick="openImageModal(this.src)" alt="IP Addressing & Routing">
+              </div>
+              <div class="cert-info">
+                <h4>IP Addressing & Routing</h4>
+                <a href="#" target="_blank">Vérifier</a>
+              </div>
+            </div>
+
+            <div class="cert-card">
+              <div class="cert-image-container">
+                <img src="assets/certifications/Radio_Frequency_Applications.png" onclick="openImageModal(this.src)" alt="Radio Frequency Applications">
+              </div>
+              <div class="cert-info">
+                <h4>Radio Frequency Applications</h4>
+                <a href="#" target="_blank">Vérifier</a>
+              </div>
+            </div>
+
+            <div class="cert-card">
+              <div class="cert-image-container">
+                <img src="assets/certifications/4g_lte.png" onclick="openImageModal(this.src)" alt="4G LTE Networks">
+              </div>
+              <div class="cert-info">
+                <h4>4G LTE Networks</h4>
+                <a href="#" target="_blank">Vérifier</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INFORMATIQUE -->
+        <div class="cert-category">
+          <h3>Informatique & Intelligence Artificielle</h3>
+          <div class="cert-grid">
+            <div class="cert-card">
+              <div class="cert-image-container">
+                <img src="assets/certifications/ml.png" onclick="openImageModal(this.src)" alt="Machine Learning">
+              </div>
+              <div class="cert-info">
+                <h4>Machine Learning</h4>
+                <a href="#" target="_blank">Vérifier</a>
+              </div>
+            </div>
+
+            <div class="cert-card">
+              <div class="cert-image-container">
+                <img src="assets/certifications/iiot.png" onclick="openImageModal(this.src)" alt="Industrial IoT">
+              </div>
+              <div class="cert-info">
+                <h4>Industrial IoT (IIoT)</h4>
+                <a href="#" target="_blank">Vérifier</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="formation-card">
-        <img src="assets/ltnasl.jpeg" alt="Lycée Technique" />
-        <div>
-          <h3>2018 – 2021</h3>
-          <p>Lycée Technique National A. S. Lamizana<br /><em>Baccaleaureat Série F2 – Électronique</em></p>
+    </section>
+
+    <!-- RÉCOMPENSES -->
+    <section id="recompenses" class="section alt fade-up">
+        <div class="container">
+            <h2>Récompenses & Distinctions</h2>
+            <div class="awards-grid">
+                <div class="award-card">🥇 1er Prix – Hackathon IA Vision 2023 (FST Tanger)</div>
+                <div class="award-card">🎓 Lauréat du programme Excellence – Mention Très Bien</div>
+                <div class="award-card">🏆 Participation – Challenge National d'Innovation Technologique 2024</div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== EXPERIENCES ===== -->
-  <section id="experiences" class="section fade-up">
-    <h2>Expériences Professionnelles</h2>
-    <div class="exp-grid">
-      <div class="exp-card">
-        <img src="assets/Telecel.jpeg" alt="Telecel Faso" />
-        <div>
-          <h3>Août 2025 – Sept 2025 : Stage PFA – Telecel Faso</h3>
-          <ul>
-            <li>Compréhension générale des réseaux de télécommunication chez les opérateurs.</li>
-            <li>Étude des systèmes de transmission et sécurité FH/FO.</li>
-            <li>Configuration et test des modems radio et CTR Aviat Networks.</li>
-          </ul>
+    <!-- ASSOCIATIF -->
+    <section id="associatif" class="section fade-up">
+        <div class="container">
+            <h2>Expériences Associatives</h2>
+            <div class="assoc-grid">
+                <div class="assoc-card">2023/2024 : Secrétaire Général Adjoint du BE de l'AEBM Tanger</div>
+                <div class="assoc-card">2023/2024 : Membre du Club Robotique & Avionique – FST Tanger</div>
+                <div class="assoc-card">2024/2025 : Chargé aux affaires culturelles et sportives – Union des Étudiants Internationaux (FST Fès)</div>
+                <div class="assoc-card">2024/2025 : Membre du Club Génie Industriel et Club Sportif</div>
+                <div class="assoc-card">2024/2025 : Chargé aux affaires sportives – CESAM Fès</div>
+            </div>
         </div>
-      </div>
-      <div class="exp-card">
-        <img src="assets/Renault.jpeg" alt="Renault Tanger" />
-        <div>
-          <h3>Avril – Juin 2024 : Stage PFE – Renault Tanger</h3>
-          <ul>
-            <li>Protection des circuits contre microcoupures, dimensionnement et installation.</li>
-            <li>Conception de circuits de commutation entre alimentation principale et secours.</li>
-            <li>Installation de dispositifs de sécurité sur ligne de production.</li>
-          </ul>
+    </section>
+
+    <!-- LANGUES & HOBBIES -->
+    <section id="langues" class="section alt fade-up">
+        <div class="container">
+            <h2>Langues & Centres d'intérêt</h2>
+            <div class="lang-hobby-grid">
+                <div class="lang-card">
+                    <h3><i class="fas fa-language"></i> Langues</h3>
+                    <ul>
+                        <li>Français – Courant</li>
+                        <li>Anglais – Professionnel</li>
+                        <li>Espagnol – Notions</li>
+                        <li>Mooré / Dioula – Courant</li>
+                    </ul>
+                </div>
+                <div class="hobby-card">
+                    <h3><i class="fas fa-football-ball"></i> Centres d'intérêt</h3>
+                    <ul>
+                        <li>Football & Athlétisme</li>
+                        <li>Robotique & IA</li>
+                        <li>Voyages & Découverte</li>
+                        <li>Culture africaine & événements étudiants</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="exp-card">
-        <img src="assets/Sonabel.png" alt="SONABEL" />
-        <div>
-          <h3>Juillet – Août 2023 : Stage d’initiation – SONABEL DCET</h3>
-          <ul>
-            <li>Intervention sur les systèmes de protections et contrôle-commande.</li>
-            <li>Mesures et exploitation des compteurs électriques industriels.</li>
-            <li>Suivi et maintenance des transformateurs de puissance.</li>
-          </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section fade-up">
+        <div class="container">
+            <h2>Contact</h2>
+            <div id="form-message" class="form-message"></div>
+            <form action="" method="POST" class="contact-form" id="contact-form">
+                <input type="text" name="honeypot" style="display:none">
+                <input type="text" name="name" placeholder="Votre nom" required>
+                <input type="email" name="email" placeholder="Votre email" required>
+                <textarea name="message" placeholder="Votre message..." required></textarea>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </form>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 M. Abass Sawadogo | Fès, Maroc</p>
+    </footer>
 
-<!-- ===== COMPETENCES ===== -->
-<section id="competences" class="section alt fade-up">
-  <h2>Compétences</h2>
-  
-  <div class="skills-grid">
-    <div class="skill">
-      <h4>Développement Web & Mobile (Spring Boot, React)</h4>
-      <div class="progress-bar"><div class="progress" style="--value: 70%;"></div></div>
-    </div>
-
-    <div class="skill">
-      <h4>Télécommunications RF / FH / FO</h4>
-      <div class="progress-bar"><div class="progress" style="--value: 85%;"></div></div>
-    </div>
-
-    <div class="skill">
-      <h4>Systèmes embarqués (STM32, ESP32, Arduino)</h4>
-      <div class="progress-bar"><div class="progress" style="--value: 95%;"></div></div>
-    </div>
-
-    <div class="skill">
-      <h4>Étude, conception et optimisation de systèmes intelligents</h4>
-      <div class="progress-bar"><div class="progress" style="--value: 90%;"></div></div>
-    </div>
-
-    <div class="skill">
-      <h4>Prototypage rapide et validation de concepts</h4>
-      <div class="progress-bar"><div class="progress" style="--value: 85%;"></div></div>
-    </div>
-
-    <div class="skill">
-      <h4>Internet des objets (IoT) : conception et déploiement</h4>
-      <div class="progress-bar"><div class="progress" style="--value: 80%;"></div></div>
-    </div>
-
-    <div class="skill">
-      <h4>Conception de prototypes électroniques</h4>
-      <div class="progress-bar"><div class="progress" style="--value: 90%;"></div></div>
-    </div>
-
-    <div class="skill">
-      <h4>Gestion de projets techniques</h4>
-      <div class="progress-bar"><div class="progress" style="--value: 85%;"></div></div>
-    </div>
-
-    <div class="skill">
-      <h4>Développement hardware et software de systèmes embarqués</h4>
-      <div class="progress-bar"><div class="progress" style="--value: 95%;"></div></div>
-    </div>
-  </div>
-</section>
-
-
-  <!-- ===== PROJETS ===== -->
-  <section id="projets" class="section fade-up">
-    <h2>Projets Académiques & Personnels</h2>
-    <div class="projects-grid">
-   <div class="project" data-project="5"><img src="assets/projets/im_smart_solar_system.jpg"><div class="project-overlay"><h3>Configuration du CTR8312 de Aviat Network</h3><p>Configuration de cet equipement qui sert a assurer une bonne qualite de servise dans la telecommunication FH et FO </p><button class="btn-small">En savoir plus</button></div></div>
-      <div class="project" data-project="2"><img src="assets/projets/imProjetAirSenseTech.jpg"><div class="project-overlay"><h3>Airsense Tech System (Hackathon FST Fès)</h3><p>Système de contrôle en temps réel de la qualité d’air dans une voiture, intégrant des capteurs et une interface connectée.</p><button class="btn-small">En savoir plus</button></div></div>
-     <div class="project" data-project="4"><video autoplay muted loop playsinline><source src="assets/videos/vid_chaine_de_tri.mp4" type="video/mp4">Ton navigateur ne supporte pas la vidéo.</video><div class="project-overlay"> <h3>chaine de tri</h3> <p>Système intelligent d’optimisation d’installation solaire avec suivi et contrôle de performance.</p><button class="btn-small">En savoir plus</button> </div></div>
-      <div class="project" data-project="4"><video autoplay muted loop playsinline><source src="assets/videos/vid_RobotOrganisateur.mp4" type="video/mp4">Ton navigateur ne supporte pas la vidéo.</video><div class="project-overlay"> <h3>Smart Solar System (Projet personnel)</h3> <p>Système intelligent d’optimisation d’installation solaire avec suivi et contrôle de performance.</p><button class="btn-small">En savoir plus</button> </div></div>
-      <div class="project" data-project="5"><img src="assets/imConfigCTR8312erODU.jpg"><div class="project-overlay"><h3>Configuration du CTR8312 de Aviat Network</h3><p>Configuration de cet equipement qui sert a assurer une bonne qualite de servise dans la telecommunication FH et FO </p><button class="btn-small">En savoir plus</button></div></div>
- </div>
-  </section>
-
-  <!-- ===== OUTILS ===== -->
-<!-- ===== OUTILS ===== -->
-<section id="outils" class="section alt fade-up">
-  <h2>Outils Techniques & Langages</h2>
-
-  <div class="tools-matrix">
-    <div class="tool-card">
-      <img src="assets/logos/im_matlab_simulink.jpg" alt="Matlab / Simulink">
-      <p>Matlab / Simulink</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/im_optisystem.jpeg" alt="OptiSystem / Atoll">
-      <p>OptiSystem / Atoll</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/arduino.jpeg" alt="im Arduino">
-      <p>Arduino</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/esp32.webp" alt="ESP 32">
-      <p>ESP32</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/im_stm32.png" alt="STM32">
-      <p>STM32</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/im_python_java_c_cpp.jpg" alt="Langages">
-      <p>C / C++ / Java / Python</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/im_html_css_js_php_sql.jpg" alt="Web">
-      <p>HTML / CSS / JS / PHP</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/im_atoll.png" alt="Collaboratifs">
-      <p>Atoll</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/cisco_packet_tracer.jpeg" alt="Collaboratifs">
-      <p>Cisco Packet Tracer</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/fpga.png" alt="im FPGA">
-      <p>FPGA</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/vhdl.jpeg" alt="Logo VHDL">
-      <p>VHDL</p>
-    </div>
-
-       <div class="tool-card">
-      <img src="assets/logos/im_quartus.jpeg" alt="Logo Quartus">
-      <p>Quartus</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/proteus.png" alt="im Proteus">
-      <p>Proteus</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/modelsim.jpg" alt="im Modelsim">
-      <p>ModelSim</p>
-    </div>
-
-    <div class="tool-card">
-      <img src="assets/logos/keil_uvision5.jpeg" alt="Keil">
-      <p>Keil</p>
-    </div>
-  </div>
-</section>
-
-
-  <!-- ===== RECOMPENSES ===== -->
-  <section id="recompenses" class="section fade-up">
-    <h2>Récompenses & Distinctions</h2>
-    <div class="awards-grid">
-      <div class="award-card">🥇 2e Prix de projet innovant – JEJA  2023 (Mohammedia)</div>
-      <div class="award-card">🎓 Lauréat du programme Excellence Link up Africa – Mention Très Bien</div>
-      <div class="award-card">🏆 Participation – Hackathon Automotiv FST Fes 2024</div>
-    </div>
-  </section>
-
-  <!-- ===== ASSOCIATIF ===== -->
-  <section id="associatif" class="section alt fade-up">
-    <h2>Expériences Associatives</h2>
-<div class="assoc-grid">
-  <div class="assoc-card"><img src="assets/logos/aebm.png" alt=""> AEBM – Secrétaire Général Adjoint AEBM Tanger</div>
-  <div class="assoc-card"><img src="assets/logos/robotic_avionic_fstt.jpg" alt=""> Club Robotique & Avionique – Membre</div>
-  <div class="assoc-card"><img src="assets/logos/uei_fstf.jpg" alt=""> Union Étudiants Internationaux – Secretaire aux Affaires culturelles et sportives</div>
-  <div class="assoc-card"><img src="assets/logos/im_cesam.png" alt=""> CESAM – Responsable des affaires sportives</div>
-</div>
-
-  </section>
-
-  <!-- ===== LANGUES & HOBBIES ===== -->
-  <section id="langues" class="section fade-up">
-  <h2>Langues & Centres d’intérêt</h2>
-
-  <div class="lang-hobby-grid">
-    
-    <!-- LANGUES -->
-    <div class="lang-card">
-      <h3><i class="fas fa-language"></i> Langues</h3>
-
-      <div class="lang-skill">
-        <div class="lang-label">
-          <span>Français</span>
-          <span class="lang-level">Courant</span>
+    <!-- MODAL PROJETS -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeProjectModal()">&times;</button>
+            <div id="modal-body"></div>
         </div>
-        <div class="lang-bar">
-          <div class="lang-progress" style="--value: 95%;"></div>
-        </div>
-      </div>
-
-      <div class="lang-skill">
-        <div class="lang-label">
-          <span>Anglais</span>
-          <span class="lang-level">Moyen</span>
-        </div>
-        <div class="lang-bar">
-          <div class="lang-progress" style="--value: 70%;"></div>
-        </div>
-      </div>
-
-      <div class="lang-skill">
-        <div class="lang-label">
-          <span>Mooré / Dioula</span>
-          <span class="lang-level">Langues maternelles</span>
-        </div>
-        <div class="lang-bar">
-          <div class="lang-progress" style="--value: 100%;"></div>
-        </div>
-      </div>
     </div>
 
-    <!-- CENTRES D’INTÉRÊT -->
-    <div class="hobby-card">
-      <h3><i class="fas fa-football-ball"></i> Centres d’intérêt</h3>
-      <ul>
-        <li>⚽ Football & Athlétisme</li>
-        <li>🤖 Robotique & IA</li>
-        <li>🌍 Culture africaine & événements étudiants</li>
-      </ul>
+    <!-- MODAL IMAGE -->
+    <div id="imageModal" class="image-modal">
+        <button class="image-modal-close" onclick="closeImageModal()">&times;</button>
+        <img class="image-modal-content" id="modalImage" alt="Certification">
     </div>
 
-  </div>
-</section>
+    <script>
+        // ==========================================
+        // LOADER
+        // ==========================================
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 500);
+        });
 
+        // ==========================================
+        // NAVBAR - SCROLL & MOBILE
+        // ==========================================
+        const navbar = document.getElementById('navbar');
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
 
-  <!-- =====ME CONTACTER ===== -->
-  <section id="contact" class="section alt fade-up">
-    <h2>Me contacter</h2>
-    <form action="contact.php" method="POST" class="contact-form">
-      <input type="text" name="name" placeholder="Votre nom" required />
-      <input type="email" name="email" placeholder="Votre email" required />
-      <textarea name="message" placeholder="Votre message..." required></textarea>
-      <button type="submit" class="btn">Envoyer</button>
-    </form>
-  </section>
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-  <script>
-document.addEventListener('contextmenu', event => event.preventDefault());
-document.addEventListener('keydown', function(e) {
-  if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
-    e.preventDefault();
-  }
-});
-</script>
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
 
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
-  <div class="social-icons">
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="mailto:exemple@mail.com"><i class="fas fa-envelope"></i></a>
-  </div>
-  <p>© 2025 Mahmoud Abass Sawadogo | Fès, Maroc</p>
-</footer>
+        // ==========================================
+        // SCROLL SPY
+        // ==========================================
+        const sections = document.querySelectorAll('section[id]');
 
+        function scrollActive() {
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelector('.nav-link[href*=' + sectionId + ']')?.classList.add('active');
+                } else {
+                    document.querySelector('.nav-link[href*=' + sectionId + ']')?.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', scrollActive);
+
+        // ==========================================
+        // FADE IN ANIMATIONS
+        // ==========================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ==========================================
+        // PARALLAX HERO
+        // ==========================================
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxBg = document.querySelector('.parallax-bg');
+            
+            if (parallaxBg && scrolled < window.innerHeight) {
+                parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // ==========================================
+        // TYPING ANIMATION
+        // ==========================================
+        const text = "SAWADOGO Mahmoud Abass";
+        const typingElement = document.getElementById('typing-text');
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                typingElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        window.addEventListener('load', typeWriter);
+
+        // ==========================================
+        // FILTRES EXPÉRIENCES
+        // ==========================================
+        const filterButtons = document.querySelectorAll('.filter-btn[data-filter]');
+        const expCards = document.querySelectorAll('.exp-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                expCards.forEach(card => {
+                    const domains = card.getAttribute('data-domains').split(',');
+                    
+                    if (filter === 'all' || domains.includes(filter)) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // ==========================================
+        // FILTRES PROJETS
+        // ==========================================
+        const filterButtonsProjects = document.querySelectorAll('.filter-btn[data-filter-project]');
+        const projectCards = document.querySelectorAll('.project');
+
+        filterButtonsProjects.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter-project');
+
+                filterButtonsProjects.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                projectCards.forEach(card => {
+                    const domains = card.getAttribute('data-domains-project').split(',');
+                    
+                    if (filter === 'all' || domains.includes(filter)) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // ==========================================
+        // MODAL PROJETS
+        // ==========================================
+        const modal = document.getElementById('project-modal');
+        const modalBody = document.getElementById('modal-body');
+
+        const projectsData = {
+            solar: {
+                title: "Smart Solar System",
+                date: "2024",
+                context: "Projet personnel de développement d'un système solaire avec tracking automatique et supervision IoT.",
+                objectives: [
+                    "Maximiser le rendement énergétique par tracking solaire",
+                    "Monitorer la production en temps réel",
+                    "Créer une interface web de supervision",
+                    "Implémenter un système de stockage intelligent"
+                ],
+                technologies: ["ESP32", "Arduino", "MQTT", "Node-RED", "HTML/CSS/JS"],
+                results: [
+                    "Augmentation du rendement de 35%",
+                    "Monitoring temps réel via application web",
+                    "Autonomie complète du système"
+                ]
+            },
+            airsense: {
+                title: "AirSense Tech System",
+                date: "2024 - Hackathon FST Fès",
+                context: "Système de contrôle en temps réel de la qualité de l'air dans une voiture.",
+                objectives: [
+                    "Mesure multi-paramètres (CO2, particules, température)",
+                    "Alertes intelligentes",
+                    "Historique et analytics"
+                ],
+                technologies: ["ESP32", "Capteurs MQ-135, DHT22", "Python", "Application mobile"],
+                results: [
+                    "Prix Hackathon",
+                    "Précision mesures >95%",
+                    "Réponse temps réel <1s"
+                ]
+            },
+            tri: {
+                title: "Chaîne de Tri Automatisée",
+                date: "2023 - FST Tanger",
+                context: "Projet d'automatisme industriel : tri de pièces par vision.",
+                objectives: [
+                    "Classification automatique par vision",
+                    "Tri par couleur et forme",
+                    "Contrôle qualité automatisé"
+                ],
+                technologies: ["Raspberry Pi", "OpenCV", "Python", "Automate Siemens", "Convoyeur"],
+                results: [
+                    "Précision tri: 97%",
+                    "Cadence: 30 pièces/min",
+                    "Réduction erreurs humaines"
+                ]
+            },
+            ctr: {
+                title: "Configuration CTR 8312 Aviat Network",
+                date: "2025",
+                context: "Configuration pour assurer la qualité de service FH/FO.",
+                objectives: [
+                    "Configuration optimale CTR",
+                    "Assurance QoS",
+                    "Tests de performance"
+                ],
+                technologies: ["CTR 8312 Aviat", "ODU/IDU", "Analyseurs RF"],
+                results: [
+                    "QoS optimisée",
+                    "Disponibilité 99.9%",
+                    "Latence réduite"
+                ]
+            },
+            agv: {
+                title: "AGV Industriel (STM32)",
+                date: "2024",
+                context: "Prototype d'AGV autonome pour transport de charges.",
+                objectives: [
+                    "Navigation autonome",
+                    "Suivi de trajectoire",
+                    "Détection obstacles"
+                ],
+                technologies: ["STM32F4", "Capteurs ultrason", "Encodeurs", "FreeRTOS", "C/C++"],
+                results: [
+                    "Précision ±2cm",
+                    "Vitesse 0.8m/s",
+                    "Charge max 5kg"
+                ]
+            },
+            pon: {
+                title: "Réseau Optique PON",
+                date: "2023",
+                context: "Étude et modélisation d'un réseau GPON.",
+                objectives: [
+                    "Dimensionnement réseau GPON",
+                    "Calcul budget optique",
+                    "Simulation performances"
+                ],
+                technologies: ["OptiSystem", "MATLAB", "Normes ITU-T", "Fibres G.652"],
+                results: [
+                    "Budget: 28dB marge",
+                    "Distance: 20km",
+                    "Débit: 2.5Gbps"
+                ]
+            },
+            vision: {
+                title: "Système de Vision IA",
+                date: "2024",
+                context: "Application de vision industrielle pour contrôle qualité.",
+                objectives: [
+                    "Détection défauts production",
+                    "Classification automatique",
+                    "Temps réel"
+                ],
+                technologies: ["Python", "OpenCV", "TensorFlow", "Raspberry Pi"],
+                results: [
+                    "Précision: 98%",
+                    "Traitement: 25fps",
+                    "Réduction rejets: 40%"
+                ]
+            },
+            pid: {
+                title: "Commande PID pour Système Médical",
+                date: "2023",
+                context: "Régulateur PID pour contrôle de pression.",
+                objectives: [
+                    "Régulation précise pression",
+                    "Stabilité système",
+                    "Sécurité patients"
+                ],
+                technologies: ["MATLAB/Simulink", "PID Controller", "Arduino", "LabVIEW"],
+                results: [
+                    "Précision: ±0.5%",
+                    "Temps réponse: <0.3s",
+                    "Stabilité garantie"
+                ]
+            }
+        };
+
+        function openProjectModal(projectId) {
+            const project = projectsData[projectId];
+            if (!project) return;
+
+            modalBody.innerHTML = `
+                <h2 class="modal-title">${project.title}</h2>
+                <p style="color: var(--primary-blue); margin-bottom: 2rem; font-weight: 600;">${project.date}</p>
+                
+                <div class="modal-section">
+                    <h4>📋 Contexte</h4>
+                    <p>${project.context}</p>
+                </div>
+
+                <div class="modal-section">
+                    <h4>🎯 Objectifs</h4>
+                    <ul>
+                        ${project.objectives.map(obj => `<li>${obj}</li>`).join('')}
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h4>🛠️ Technologies utilisées</h4>
+                    <div class="modal-tags">
+                        ${project.technologies.map(tech => `<span class="tag">${tech}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4>✅ Résultats</h4>
+                    <ul>
+                        ${project.results.map(result => `<li>${result}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeProjectModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeProjectModal();
+            }
+        });
+
+        // ==========================================
+        // MODAL IMAGE CERTIFICATIONS
+        // ==========================================
+        function openImageModal(src) {
+            const imageModal = document.getElementById("imageModal");
+            const modalImage = document.getElementById("modalImage");
+            
+            imageModal.classList.add('active');
+            modalImage.src = src;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal() {
+            const imageModal = document.getElementById("imageModal");
+            imageModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fermer au clic extérieur
+        document.getElementById("imageModal").addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeImageModal();
+            }
+        });
+
+        // Fermer avec Escape
+        document.addEventListener('keydown', (e) => {
+            const imageModal = document.getElementById("imageModal");
+            if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+                closeImageModal();
+            }
+        });
+
+        // ==========================================
+        // FORMULAIRE CONTACT
+        // ==========================================
+        function showFormMessage(message, type) {
+            const messageDiv = document.getElementById('form-message');
+            messageDiv.textContent = message;
+            messageDiv.className = 'form-message ' + type;
+            
+            setTimeout(() => {
+                messageDiv.className = 'form-message';
+            }, 5000);
+        }
+
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            const name = this.name.value.trim();
+            const email = this.email.value.trim();
+            const message = this.message.value.trim();
+
+            if (!name || !email || !message) {
+                e.preventDefault();
+                showFormMessage('Veuillez remplir tous les champs requis.', 'error');
+                return false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                e.preventDefault();
+                showFormMessage('Veuillez entrer un email valide.', 'error');
+                return false;
+            }
+        });
+    </script>
 </body>
 </html>
